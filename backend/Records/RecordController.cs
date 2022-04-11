@@ -1,4 +1,4 @@
-namespace backend.Controllers;
+namespace backend.Records;
 
 public class RecordController
 {
