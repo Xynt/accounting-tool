@@ -6,5 +6,7 @@ public class Account
 
     public string Name { get; set; } = null!;
     
+    public bool isPhysical { get; set; }
+    
     public double Amount { get; set; }
 }

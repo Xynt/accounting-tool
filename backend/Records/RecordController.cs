@@ -15,7 +15,7 @@ public class RecordController : ControllerBase
     }
 
     [HttpGet]
-    public ActionResult<RecordDto> GetAllRecords()
+    public ActionResult<List<RecordDto>> GetAllRecords()
     {
         return Ok(_recordService.GetAllRecords());
     }
