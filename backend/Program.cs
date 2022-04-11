@@ -1,4 +1,6 @@
 using backend;
+using backend.Accounts;
+using backend.Records;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,6 +11,9 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddTransient<IAccountService, AccountService>();
+builder.Services.AddTransient<IRecordService, RecordService>();
 
 builder.Services.AddDbContext<StuffDbContext>(options => options.UseSqlite());
 
