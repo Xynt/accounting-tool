@@ -1,4 +1,5 @@
 using backend.Accounts.Entities;
+using backend.Records.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace backend;
@@ -9,5 +10,7 @@ public class StuffDbContext : DbContext
     {
     }
 
-    public DbSet<Account> accounts { get; set; } = null!;
+    public DbSet<Account> Accounts { get; set; } = null!;
+    
+    public DbSet<Record> Records { get; set; } = null!;
 }
