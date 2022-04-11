@@ -1,22 +1,21 @@
 import { AgGridReact } from 'ag-grid-react';
-import { AccountsRepository } from './repositories/AccountsRepository';
-
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
+import { useEffect } from 'react';
 
-const AccountsGrid = () => {
+const AccountsGrid = ({ accounts }: any) => {
+
+  useEffect(() => { console.log('------------------') }, [accounts]);
 
   const columnDefs = [
     { field: 'name' },
     { field: 'amount' }
   ]
 
-  const rowData = AccountsRepository.getAccounts();
-
   return (
     <div className="ag-theme-alpine" style={{ height: 400, width: 602 }}>
       <AgGridReact
-        rowData={rowData}
+        rowData={accounts}
         columnDefs={columnDefs}>
       </AgGridReact>
     </div>

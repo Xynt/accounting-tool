@@ -1,9 +1,11 @@
 export class Account {
-  name: string;
-  amount: number;
+  name: string
+  amount: number
+  isPhysical: boolean
 
-  constructor(name: string, amount?: number) {
-    this.name = name;
-    this.amount = amount ?? 0;
+  constructor(name: string, isPhysical: boolean, amount?: number) {
+    this.name = name
+    this.isPhysical = isPhysical
+    this.amount = amount ?? 0
   }
 }
