@@ -5,13 +5,14 @@ export class AccountsRepository {
   public static getAccounts(): Account[] {
     // TODO: implement
     return [
-      new Account('Kasse', 1000),
-      new Account('Lohnkonto'),
-      new Account('Sparkonto')
+      new Account('Kasse', true, 1000),
+      new Account('Lohnkonto', false),
+      new Account('Sparkonto', false)
     ];
   }
 
-  public static createAccount(): void {
+  public static createAccount(account: Account): void {
     // TODO: implement
+    console.log(account)
   }
 }
