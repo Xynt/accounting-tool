@@ -4,15 +4,16 @@ import 'reactjs-popup/dist/index.css';
 import { Account } from './models/Account';
 import { AccountsRepository } from './repositories/AccountsRepository';
 
-const CreateAccountButton = () => {
+const CreateAccountButton = ({ accountCreated }: any) => {
 
-  const [isPhysical, setIsPhysical] = useState(false);
+  const [isPhysical, setIsPhysical] = useState(false)
   const [name, setName] = useState('')
   const [amount, setAmount] = useState(0)
 
   function addAccountClickHandler(): void {
-    const account: Account = new Account(name, isPhysical, amount);
-    AccountsRepository.createAccount(account);
+    const account: Account = new Account(name, isPhysical, amount)
+    AccountsRepository.createAccount(account) // TODO: await
+    accountCreated()
   }
 
   return (
