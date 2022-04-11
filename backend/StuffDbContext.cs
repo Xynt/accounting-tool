@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace backend;
 
-public class AccountDbContext : DbContext
+public class StuffDbContext : DbContext
 {
-    public AccountDbContext(IConfiguration configuration)
+    public StuffDbContext(IConfiguration configuration)
     {
     }
 
