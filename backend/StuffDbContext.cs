@@ -6,7 +6,8 @@ namespace backend;
 
 public class StuffDbContext : DbContext
 {
-    public StuffDbContext(IConfiguration configuration)
+    public StuffDbContext(DbContextOptions<StuffDbContext> options)
+        : base(options)
     {
     }
 
