@@ -8,7 +8,7 @@ namespace backend.Accounts;
 [Route("/accounts")]
 public class AccountController
 {
-    private IAccountService _accountService;
+    private readonly IAccountService _accountService;
 
     public AccountController(IAccountService accountService)
     {

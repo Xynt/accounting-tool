@@ -15,7 +15,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddTransient<IAccountService, AccountService>();
 builder.Services.AddTransient<IRecordService, RecordService>();
 
-builder.Services.AddDbContext<StuffDbContext>(options => options.UseSqlite("Filename=:memory:"));
+builder.Services.AddDbContext<StuffDbContext>(options => options.UseSqlite(builder.Configuration.GetConnectionString("sqlite")));
 
 var app = builder.Build();
 
