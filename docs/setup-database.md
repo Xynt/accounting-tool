@@ -4,7 +4,7 @@
    1. Command: ```dotnet user-secrets set "sqliteConnectionString:string" "Data Source=<<Absolute Location>>;"```
    2. Example: ```dotnet user-secrets set "sqliteConnectionString:string" "Data Source=C:\\Users\\xaro\\RiderProjects\\accounting-tool\\database\\apptool.db;"```
 2. Update Database
-   1. Command: ```dotnet ef database update```
+   1. Command: ```dotnet ef database update``` (you might have to run ```dotnet tool install --global dotnet-ef``` first)
    
 ## Modifying the database
 
