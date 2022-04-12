@@ -22,8 +22,14 @@ public class AccountController
     }
 
     [HttpPost]
-    public void CreateAccount([FromBody] PostAccountDto dto)
+    public async Task<ActionResult> CreateAccount([FromBody] PostAccountDto dto)
     {
-        _accountService.AddAccount(dto);
+        var result = await _accountService.AddAccount(dto);
+        if (result.IsFailure)
+        {
+            return new BadRequestObjectResult(result.Error);
+        }
+
+        return new OkResult();
     }
 }
