@@ -1,4 +1,6 @@
 using backend;
+using backend.Accounts;
+using backend.Records;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,7 +12,10 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddDbContext<StuffDbContext>(options => options.UseSqlite());
+builder.Services.AddTransient<IAccountService, AccountService>();
+builder.Services.AddTransient<IRecordService, RecordService>();
+
+builder.Services.AddDbContext<StuffDbContext>(options => options.UseSqlite("Filename=:memory:"));
 
 var app = builder.Build();
 
