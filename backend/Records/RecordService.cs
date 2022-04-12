@@ -1,5 +1,6 @@
 using backend.Records.Dtos;
 using backend.Records.Entities;
+using CSharpFunctionalExtensions;
 using Microsoft.EntityFrameworkCore;
 
 namespace backend.Records;
@@ -22,10 +23,36 @@ public class RecordService : IRecordService
             .ConvertAll(r => r.ToRecordDto());
     }
 
-    public async Task AddRecord(PostRecordDto dto)
+    public async Task<Result> AddRecord(PostRecordDto dto)
     {
+        var creditAccount = _context.Accounts.AsTracking().Where(a => a.Id == dto.CreditId);
+        var debitAccount = _context.Accounts.AsTracking().Where(a => a.Id == dto.DebitId);
+
+        if (creditAccount.TryFirst().HasNoValue)
+        {
+            return Result.Failure("Credit account not found");
+        }
+
+        if (debitAccount.TryFirst().HasNoValue)
+        {
+            return Result.Failure("Debit account not found");
+        }
+
+        var creditor = creditAccount.First();
+        var debitor = debitAccount.First();
+
+        if (debitor.Amount < dto.Amount)
+        {
+            return Result.Failure("Debit account does not have enough funds");
+        }
+
+        creditor.Amount += dto.Amount;
+        debitor.Amount -= dto.Amount;
+
         await _context.Records.AddAsync(await ToRecord(dto));
         await _context.SaveChangesAsync();
+        
+        return Result.Success();
     }
 
     private async Task<Record> ToRecord(PostRecordDto dto)

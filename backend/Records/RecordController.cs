@@ -23,7 +23,12 @@ public class RecordController : ControllerBase
     [HttpPost]
     public async Task<ActionResult> AddRecord([FromBody]PostRecordDto dto)
     {
-        await _recordService.AddRecord(dto);
+        var result = await _recordService.AddRecord(dto);
+        if (result.IsFailure)
+        {
+            return new BadRequestObjectResult(result.Error);
+        }
+
         return Ok();
     }
 }
