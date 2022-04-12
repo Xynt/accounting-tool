@@ -1,32 +1,48 @@
-import { hover } from "@testing-library/user-event/dist/hover"
+import React from "react"
 import { Link } from "react-router-dom"
 
-const Navbar = () => {
+class Navbar extends React.Component<any, any> {
 
-  const flexStyles: any = {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    gap: '20px',
-    backgroundColor: '#cccccc',
-    height: '30px'
-  }
-
-  const linkStyles: any = {
-    color: '#383838',
-    textDecoration: 'none',
-    "&:hover": {
-      color: '#000000'
+  constructor(props: any) {
+    super(props)
+    this.state = {
+      accountsHover: false,
+      recordsHover: false
     }
   }
 
-  return (
-    <div style={flexStyles}>
-      <Link to="/accounts" style={linkStyles}>Accounts</Link>
-      <Link to="/records" style={linkStyles}>Records</Link>
-    </div>
-  )
+  toggleAccountsHover = () => {
+    this.setState({ accountsHover: !this.state.accountsHover });
+  }
+
+  toggleRecordsHover = () => {
+    this.setState({ recordsHover: !this.state.recordsHover });
+  }
+
+  render(): any {
+    const flexStyles: any = {
+      display: 'flex',
+      flexDirection: 'row',
+      justifyContent: 'center',
+      alignItems: 'center',
+      gap: '20px',
+      backgroundColor: '#cccccc',
+      height: '30px'
+    }
+
+    const linkNormalStyle = { color: '#383838', textDecoration: 'none' }
+    const linkHoverStyle = { color: '#eeeeee', textDecoration: 'none' }
+
+    const accountsLinkStyles = this.state.accountsHover ? linkHoverStyle : linkNormalStyle
+    const recordsLinkStyles = this.state.recordsHover ? linkHoverStyle : linkNormalStyle
+
+    return (
+      <div style={flexStyles}>
+        <Link to="/accounts" style={accountsLinkStyles} onMouseEnter={this.toggleAccountsHover} onMouseLeave={this.toggleAccountsHover}>Accounts</Link>
+        <Link to="/records" style={recordsLinkStyles} onMouseEnter={this.toggleRecordsHover} onMouseLeave={this.toggleRecordsHover}>Records</Link>
+      </div>
+    )
+  }
 }
 
 export default Navbar
