@@ -25,6 +25,7 @@ public class RecordService : IRecordService
     public async Task AddRecord(PostRecordDto dto)
     {
         await _context.Records.AddAsync(await ToRecord(dto));
+        await _context.SaveChangesAsync();
     }
 
     private async Task<Record> ToRecord(PostRecordDto dto)
