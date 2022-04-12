@@ -15,15 +15,20 @@ public class RecordService : IRecordService
 
     public IReadOnlyList<RecordDto> GetAllRecords()
     {
-        return _context.Records.AsNoTracking().ToList().ConvertAll(r => r.toRecordDto());
+        return _context.Records.AsNoTracking()
+            .Include(r => r.Credit)
+            .Include(r => r.Debit)
+            .ToList()
+            .ConvertAll(r => r.ToRecordDto());
     }
 
     public async Task AddRecord(PostRecordDto dto)
     {
-        await _context.Records.AddAsync(await toRecord(dto));
+        await _context.Records.AddAsync(await ToRecord(dto));
+        await _context.SaveChangesAsync();
     }
 
-    private async Task<Record> toRecord(PostRecordDto dto)
+    private async Task<Record> ToRecord(PostRecordDto dto)
     {
         return new Record
         {

@@ -12,5 +12,9 @@ public class RecordConfiguration : IEntityTypeConfiguration<Record>
         builder.Property(r => r.Amount).HasColumnName("Amount").IsRequired();
         builder.Property(r => r.Date).HasColumnName("Date").IsRequired();
         builder.Property(r => r.Description).HasColumnName("Description").IsRequired();
+        builder.Property(r => r.CreditId).HasColumnName("CreditId").IsRequired();
+        builder.Property(r => r.DebitId).HasColumnName("DebitId").IsRequired();
+        builder.HasOne(r => r.Credit).WithMany().HasForeignKey(r => r.CreditId);
+        builder.HasOne(r => r.Debit).WithMany().HasForeignKey(r => r.DebitId);
     }
 }

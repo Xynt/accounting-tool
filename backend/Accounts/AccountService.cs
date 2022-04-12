@@ -20,6 +20,7 @@ public class AccountService : IAccountService
     public async Task AddAccount(PostAccountDto dto)
     {
         await _context.Accounts.AddAsync(ToAccount(dto));
+        await _context.SaveChangesAsync();
     }
 
     private static Account ToAccount(PostAccountDto dto)

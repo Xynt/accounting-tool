@@ -4,7 +4,7 @@ namespace backend.Records.Entities;
 
 public static class RecordMapper
 {
-    public static RecordDto toRecordDto(this Record record)
+    public static RecordDto ToRecordDto(this Record record)
     {
         return new RecordDto
         {
@@ -12,8 +12,8 @@ public static class RecordMapper
             Description = record.Description,
             Date = record.Date,
             Id = record.Id,
-            CreditId = record.Credit.Id,
-            DebitId = record.Debit.Id
+            CreditId = record.CreditId,
+            DebitId = record.DebitId
         };
     }
 }

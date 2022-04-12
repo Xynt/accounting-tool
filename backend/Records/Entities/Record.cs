@@ -12,6 +12,10 @@ public class Record
 
     public DateTime Date { get; set; }
 
+    public Guid CreditId { get; set; }
+    
+    public Guid DebitId { get; set; }
+
     public Account Credit { get; set; } = null!;
 
     public Account Debit { get; set; } = null!;

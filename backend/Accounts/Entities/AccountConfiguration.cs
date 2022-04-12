@@ -7,10 +7,10 @@ public class AccountConfiguration : IEntityTypeConfiguration<Account>
 {
     public void Configure(EntityTypeBuilder<Account> builder)
     {
-        builder.ToTable("Record", "Core");
-        builder.HasKey(r => r.Id);
-        builder.Property(r => r.Amount).HasColumnName("Amount").IsRequired();
-        builder.Property(r => r.isPhysical).HasColumnName("IsPhysical").IsRequired();
-        builder.Property(r => r.Name).HasColumnName("Name").IsRequired();
+        builder.ToTable("Account", "Core");
+        builder.HasKey(a => a.Id);
+        builder.Property(a => a.Amount).HasColumnName("Amount").IsRequired();
+        builder.Property(a => a.isPhysical).HasColumnName("IsPhysical").IsRequired();
+        builder.Property(a => a.Name).HasColumnName("Name").IsRequired();
     }
 }

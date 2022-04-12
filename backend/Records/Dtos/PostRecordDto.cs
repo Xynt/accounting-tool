@@ -1,5 +1,3 @@
-using backend.Accounts.Entities;
-
 namespace backend.Records.Dtos;
 
 public class PostRecordDto
