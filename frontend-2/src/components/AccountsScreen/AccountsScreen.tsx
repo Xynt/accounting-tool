@@ -5,13 +5,10 @@ import { AccountsRepository } from './repositories/AccountsRepository';
 
 const AccountsScreen = () => {
 
-  const [accounts, setAccounts] = useState(AccountsRepository.getAccounts());
+  const [accounts, setAccounts] = useState(AccountsRepository.getAccounts())
 
   const accountCreated = () => {
-    console.log('account created')
-    console.log(accounts)
     setAccounts(AccountsRepository.getAccounts())
-    console.log(accounts)
   }
 
   return (

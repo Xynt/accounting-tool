@@ -5,8 +5,6 @@ import { useEffect } from 'react';
 
 const AccountsGrid = ({ accounts }: any) => {
 
-  useEffect(() => { console.log('------------------') }, [accounts]);
-
   const columnDefs = [
     { field: 'name' },
     { field: 'amount' }

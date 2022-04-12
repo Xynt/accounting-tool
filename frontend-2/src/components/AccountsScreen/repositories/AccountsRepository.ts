@@ -10,7 +10,7 @@ export class AccountsRepository {
 
   public static getAccounts(): Account[] {
     // TODO: implement
-    return this.accounts
+    return Object.assign([], this.accounts);
   }
 
   public static createAccount(account: Account): void {
