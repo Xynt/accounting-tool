@@ -49,19 +49,19 @@ public class RecordService : IRecordService
         creditor.Amount += dto.Amount;
         debitor.Amount -= dto.Amount;
 
-        await _context.Records.AddAsync(await ToRecord(dto));
+        await _context.Records.AddAsync(ToRecord(dto));
         await _context.SaveChangesAsync();
         
         return Result.Success();
     }
 
-    private async Task<Record> ToRecord(PostRecordDto dto)
+    private static Record ToRecord(PostRecordDto dto)
     {
         return new Record
         {
             Amount = dto.Amount,
-            Credit = await _context.Accounts.AsNoTracking().Where(a => a.Id == dto.CreditId).FirstAsync(),
-            Debit = await _context.Accounts.AsNoTracking().Where(a => a.Id == dto.DebitId).FirstAsync(),
+            CreditId = dto.CreditId,
+            DebitId = dto.DebitId,
             Date = DateTime.Now,
             Description = dto.Description
         };
