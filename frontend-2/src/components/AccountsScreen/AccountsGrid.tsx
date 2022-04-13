@@ -1,7 +1,6 @@
 import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
-import { useEffect } from 'react';
 
 const AccountsGrid = ({ accounts }: any) => {
 
